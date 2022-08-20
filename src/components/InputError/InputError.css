@@ -1,0 +1,42 @@
+.label {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 10px;
+    line-height: 12px;
+    color: #a0a0a0;
+}
+
+.input {
+    margin-bottom: 8px;
+    padding: 15px;
+    font-size: 13px;
+    line-height: 16px;
+    box-sizing: border-box;
+    height: 46px;
+    border: none;
+    border-bottom-width: 1px;
+    border-bottom-style: solid ;
+    border-bottom-color: #E8E8E8;
+}
+
+.input-error {
+    color: #ff3055;
+}
+
+.input:focus-visible {
+    outline: none;
+    border-bottom-color: #3456F3;
+    box-shadow: 0 1px 0 #000;
+}
+
+.input__error {
+    font-size: 10px;
+    line-height: 12px;
+    color: #ff3055;
+    visibility: hidden;
+}
+
+.input__error_visible {
+    visibility: visible;
+}

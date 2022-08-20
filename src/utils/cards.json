@@ -1,0 +1,53 @@
+{
+    "id": 1,
+    "nameRU": " Баллада о Дженезисе и Леди Джей",
+    "nameEN": "The Ballad of Genesis and Lady Jaye",
+    "director": "Мари Лозье",
+    "country": "США, Германия, Великобритания, Нидерланды, Бельгия, Франция",
+    "year": "2011",
+    "duration": 65,
+    "description": "Невероятная история любви Дженезиса Пи-Орриджа и его жены Леди Джей, вместе с ним игравшей в группе Psychic TV, — история, которая вряд ли сообщает что-то новое о природе индастриала, но определенно — о природе человека вообще и о природе Пи-Орриджа в частности. Нью-йоркская художница французского происхождения Мари Лозье задумала и начала снимать этот фильм семь лет тому назад — ходила в гости в их квартиру в Нью-Йорке, снимала Дженезиса, стоящего за плитой, и Джей с пучками петрушки и котом на шестнадцатимиллиметровую камеру, одевала их в дурацкие костюмы, ездила с Psychic TV в тур и следила за тем, как любовь заставляет человека отказаться от собственной личности, раствориться в другом человеке и стать одним целым с возлюбленным, используя метод сut-up Уилльяма Берроуза; когда Леди Джей умерла в 2007 году, Дженезис сделал ее татуировку почти во всю руку и до сих пор говорит «мы» вместо «я».",
+    "trailerLink": "https://www.youtube.com/watch?v=d8BX2FDrogo",
+    "created_at": "2020-12-02T21:06:17.722Z",
+    "updated_at": "2020-12-02T21:06:17.722Z",
+    "image": {
+      "id": 11,
+      "name": "ballad-of-genesis-and-lady-jaye",
+      "alternativeText": "",
+      "caption": "",
+      "width": 650,
+      "height": 300,
+      "formats": {
+        "thumbnail": {
+          "hash": "thumbnail_ballad_of_genesis_and_lady_jaye_10c27afa96",
+          "ext": ".jpeg",
+          "mime": "image/jpeg",
+          "width": 245,
+          "height": 113,
+          "size": 9.42,
+          "path": null,
+          "url": "/uploads/thumbnail_ballad_of_genesis_and_lady_jaye_10c27afa96.jpeg"
+        },
+        "small": {
+          "hash": "small_ballad_of_genesis_and_lady_jaye_10c27afa96",
+          "ext": ".jpeg",
+          "mime": "image/jpeg",
+          "width": 500,
+          "height": 231,
+          "size": 29.37,
+          "path": null,
+          "url": "/uploads/small_ballad_of_genesis_and_lady_jaye_10c27afa96.jpeg"
+        }
+      },
+      "hash": "ballad_of_genesis_and_lady_jaye_10c27afa96",
+      "ext": ".jpeg",
+      "mime": "image/jpeg",
+      "size": 43.95,
+      "url": "/uploads/ballad_of_genesis_and_lady_jaye_10c27afa96.jpeg",
+      "previewUrl": null,
+      "provider": "local",
+      "provider_metadata": null,
+      "created_at": "2020-12-02T21:03:33.524Z",
+      "updated_at": "2020-12-02T21:03:33.524Z"
+    }
+  }
