@@ -8,7 +8,7 @@ export default function Portfolio() {
       <ul className="portfolio-links">
         <li className="portfolio-link-item">
           <a
-            href="https://KaterinaPres.github.io/how-to-learn"
+            href="http://localhost:3000/*"
             className="link portfolio-link"
             target='_blank'
             rel="noreferrer"
@@ -30,7 +30,7 @@ export default function Portfolio() {
         </li>
         <li className="portfolio-link-item">
           <a
-            href="https://KaterinaPr.students.nomoredomains.xyz/"
+            href="http://localhost:3000/*"
             className="link portfolio-link"
             target='_blank'
             rel="noreferrer"

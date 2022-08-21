@@ -1,19 +1,19 @@
 import "./Navigation.css";
 import React, { useState } from "react";
 import { Link, NavLink, Route } from "react-router-dom";
-import profile from "../../images/profile.svg";
-import menu from "../../images/menu.svg";
-import close from "../../images/close.svg";
+import profileIcon from "../../images/profile.svg";
+import menuIcon from "../../images/menu.svg";
+import closeIcon from "../../images/close.svg";
 
-export default function Navigation() {
-  const [menuOpen, setMenuOpen] = useState(false);
+function Navigation() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleMenuClick = () => {
-    setMenuOpen(true);
+    setIsMenuOpen(true);
   };
 
   const handleCloseMenu = () => {
-    setMenuOpen(false);
+    setIsMenuOpen(false);
   };
 
   const handleOverlayClick = (e) => {
@@ -41,10 +41,10 @@ export default function Navigation() {
           type="button"
           onClick={handleMenuClick}
         >
-          <img src={menu} className="header__nav-icon" alt='Меню'></img>
+          <img src={menuIcon} className="header__nav-icon" alt='Меню'></img>
         </button>
         <nav
-          className={`header__nav ${menuOpen ? " header__nav_open" : ""}`}
+          className={`header__nav ${isMenuOpen ? " header__nav_open" : ""}`}
           onClick={handleOverlayClick}
         >
           <button
@@ -52,7 +52,7 @@ export default function Navigation() {
             type="button"
             onClick={handleCloseMenu}
           >
-            <img src={close} className="header__nav-icon" alt='Закрыть'></img>
+            <img src={closeIcon} className="header__nav-icon" alt='Закрыть'></img>
           </button>
           <ul className="header__nav-links" id="nav-links">
             <li className="header__nav-link-item header__nav-link-item_type_main">
@@ -91,7 +91,7 @@ export default function Navigation() {
                 onClick={handleCloseMenu}
               >
                 <img
-                  src={profile}
+                  src={profileIcon}
                   alt="Иконка профиля"
                   className="header__profile-link-icon"
                 />
@@ -104,3 +104,5 @@ export default function Navigation() {
     </>
   );
 }
+
+export default Navigation;
