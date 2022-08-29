@@ -1,13 +1,13 @@
 import "./Login.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import PageWithForm from "../PageWithForm/PageWithForm";
-import FormBlock from "../FormBlock/FormBlock";
-import InputError from "../InputError/InputError";
+import Form from "../FormBlock/FormBlock";
+import Input from "../InputError/InputError";
 import SubmitButton from "../SubmitButton/SubmitButton";
-import { useFormWithValidation } from "../../utils/useFormWithValidation";
+import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
-export default function Login({ handleLogin, errorMessage, setErrorMessage }) {
+function Login({ handleLogin, errorMessage, setErrorMessage }) {
   const controls = useFormWithValidation({
     email: "",
     password: "",
@@ -24,35 +24,37 @@ export default function Login({ handleLogin, errorMessage, setErrorMessage }) {
 
   return (
     <PageWithForm
-      title="Рады видеть!"
       name="login"
+      title="Рады видеть!"
       captionText="Ещё не зарегистрированы?"
       linkText="Регистрация"
       linkPath="/signup"
     >
-      <FormBlock onSubmit={handleFormSubmit}>
-        <InputError
-          label="E-mail"
+      <Form onSubmit={handleFormSubmit}>
+        <Input
           type="email"
           name="email"
+          label="E-mail"
           autoFocus={true}
           required={true}
           value={controls.values.email}
           onChange={controls.handleChange}
           errorMessage={controls.errors.email}
-        ></InputError>
-        <InputError
-          label="Пароль"
+        ></Input>
+        <Input
           type="password"
           name="password"
+          label="Пароль"
           required={true}
           value={controls.values.password}
           onChange={controls.handleChange}
           errorMessage={controls.errors.password}
-        ></InputError>
+        ></Input>
         <ErrorMessage errorMessage={errorMessage} />
-        <SubmitButton label="Войти" isDisabled={!controls.isValid}/>
-      </FormBlock>
+        <SubmitButton label="Войти" isDisabled={!controls.isValid} />
+      </Form>
     </PageWithForm>
   );
 }
+
+export default Login;

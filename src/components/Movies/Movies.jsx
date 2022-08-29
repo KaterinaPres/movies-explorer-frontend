@@ -1,13 +1,13 @@
-import React from 'react';
 import "./Movies.css";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Preloader from "../Preloader/Preloader";
 import { useEffect, useState } from "react";
-import useBreakpoint from "../../utils/useResize";
+import React from "react";
+import useBreakpoint from "../../hooks/useResize";
 
-export default function Movies({
+function Movies({
   movies,
   onSearch,
   savedMovies,
@@ -78,41 +78,46 @@ export default function Movies({
       searchResult.slice(0, prev.length + cardListValues.increment)
     );
   };
+
   return (
-    <main className="movies-saved">
-      <SearchForm 
-      onSearch={handleSearch}
-      movies={movies}
-      setSearchResult={setSearchResult}
-      searchResult={searchResult}
-      setIsLoading={setIsLoading}
-      initialSearchQueryValues={initialSearchQueryValues}
-      searchWordRequiered
+    <>
+      <SearchForm
+        onSearch={handleSearch}
+        movies={movies}
+        setSearchResult={setSearchResult}
+        searchResult={searchResult}
+        setIsLoading={setIsLoading}
+        initialSearchQueryValues={initialSearchQueryValues}
+        searchWordRequiered
       />
-      <MoviesCardList name="movies" pagination={pagination} onLoadMore={onLoadMore}>
-      {isLoading ? (
+
+      <MoviesCardList
+        name="movies"
+        pagination={pagination}
+        onLoadMore={onLoadMore}
+      >
+        {isLoading ? (
           <Preloader />
         ) : searchResult.length !== 0 ? (
           visibleMovies.map((movie) => {
             return (
-            <MoviesCard 
-            key={movie.id}
-            savedMovies={savedMovies}
-            type="movies"
-            movie={movie}
-            preview={movie.image.formats.thumbnail.url}
-            addMoviesToSaved={addMoviesToSaved}
-            deleteMovieFromSaved={deleteMovieFromSaved}
-          />
-          );
-        })
-      ) : (
-        <p className="movies__list-message">{searchResultText}</p>
-      )}
-    </MoviesCardList>
-      <div className='movies__list'>
-        <button type='button' className="button movies__load-more-button">Ещё</button>
-      </div>
-    </main>
-  )
+              <MoviesCard
+                key={movie.id}
+                savedMovies={savedMovies}
+                type="movies"
+                movie={movie}
+                preview={movie.image.formats.thumbnail.url}
+                addMoviesToSaved={addMoviesToSaved}
+                deleteMovieFromSaved={deleteMovieFromSaved}
+              />
+            );
+          })
+        ) : (
+          <p className="movies__list-message">{searchResultText}</p>
+        )}
+      </MoviesCardList>
+    </>
+  );
 }
+
+export default Movies;

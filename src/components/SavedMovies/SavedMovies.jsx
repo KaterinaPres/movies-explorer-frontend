@@ -1,21 +1,3 @@
-// import React from "react";
-// import MoviesCard from "../MoviesCard/MoviesCard";
-// import MoviesCardList from "../MoviesCardList/MoviesCardList";
-// import SearchForm from "../SearchForm/SearchForm";
-// import "./SavedMovies.css";
-
-// export default function SavedMovies() {
-//   return (
-//     <main className="movies-saved">
-//       <SearchForm />
-//       <MoviesCardList>
-//         <MoviesCard>
-//         </MoviesCard>
-//       </MoviesCardList>
-//     </main>
-//   );
-// }
-
 import "./SavedMovies.css";
 import React, { useEffect, useState } from "react";
 import SearchForm from "../SearchForm/SearchForm";

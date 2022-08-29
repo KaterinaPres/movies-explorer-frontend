@@ -1,78 +1,82 @@
-import React from "react";
-import FromBlock from "../FormBlock/FormBlock";
 import "./Register.css";
-import { useFormWithValidation } from "../../hooks/form";
+import React, { useEffect } from "react";
 
-export default function Register(props) {
-  const { values, handleChange, errors, isValid } = useFormWithValidation();
-  console.log(isValid);
+import PageWithForm from "../PageWithForm/PageWithForm";
+import Form from "../FormBlock/FormBlock";
+import Input from "../InputError/InputError";
+import SubmitButton from "../SubmitButton/SubmitButton";
+import { useFormWithValidation } from "../../hooks/useFormWithValidation";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
-  const handleSubmit = (e) => {
+function Register({ handleRegistration, errorMessage, setErrorMessage }) {
+  const controls = useFormWithValidation({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  useEffect(() => {
+    errorMessage && setErrorMessage("");
+  }, [controls.values.email]);
+
+  const handleFormSubmit = (e) => {
     e.preventDefault();
-    let { name, email, password } = values;
-    props.handleRegister({ name, email, password });
+    handleRegistration(
+      controls.values.name,
+      controls.values.email,
+      controls.values.password
+    );
   };
 
   return (
-    <section className="register">
-      <FromBlock
-        title="Добро пожаловать!"
-        formName="register"
-        buttonText="Зарегистрироваться"
-        subtitle="Уже зарегистрированы?"
-        toLink="/signin"
-        namelink="Войти"
-        handleSubmit={handleSubmit}
-        isOpen={props.isOpen}
-        message={props.message}
-        // disabled={isValid ? "disabled" : 'null'}
-      >
-        <label className="register__label">
-          Имя
-          <input
-            className="register__item"
-            name="name"
-            type="text"
-            id="name"
-            required
-            minLength="2"
-            maxLength="40"
-            value={values.name || ""}
-            onChange={handleChange}
-          />
-          <span className="register__message">{errors.name}</span>
-        </label>
-        <label className="register__label">
-          E-mail
-          <input
-            className="register__item"
-            name="email"
-            type="text"
-            id="email"
-            required
-            minLength="2"
-            maxLength="40"
-            value={values.email || ""}
-            onChange={handleChange}
-          />
-          <span className="register__message">{errors.email}</span>
-        </label>
-        <label className="register__label">
-          Пароль
-          <input
-            className="register__item "
-            name="password"
-            type="password"
-            id="password"
-            required
-            minLength="2"
-            maxLength="200"
-            value={values.password || ""}
-            onChange={handleChange}
-          />
-          <span className="register__message">{errors.password}</span>
-        </label>
-      </FromBlock>
-    </section>
+    <PageWithForm
+      name="register"
+      title="Добро пожаловать!"
+      captionText="Уже зарегистрированы?"
+      linkText="Войти"
+      linkPath="/signin"
+    >
+      <Form onSubmit={handleFormSubmit}>
+        <Input
+          type="text"
+          name="name"
+          label="Имя"
+          autoFocus={true}
+          required
+          value={controls.values.name}
+          onChange={controls.handleChange}
+          minLength={2}
+          maxLength={30}
+          pattern={"[а-яА-ЯёЁa-zA-z- ]*"}
+          errorMessage={controls.errors.name}
+        ></Input>
+        <Input
+          type="email"
+          name="email"
+          label="E-mail"
+          required={true}
+          value={controls.values.email}
+          onChange={controls.handleChange}
+          errorMessage={controls.errors.email}
+        ></Input>
+        <Input
+          type="password"
+          name="password"
+          label="Пароль"
+          required={true}
+          value={controls.values.password}
+          onChange={controls.handleChange}
+          minLength={5}
+          errorMessage={controls.errors.password}
+        ></Input>
+        <ErrorMessage errorMessage={errorMessage} />
+        <SubmitButton
+          label="Зарегистрироваться"
+          isDisabled={!controls.isValid}
+        />
+      </Form>
+    </PageWithForm>
   );
 }
+
+export default Register;

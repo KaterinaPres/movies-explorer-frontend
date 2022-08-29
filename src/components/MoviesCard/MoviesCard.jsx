@@ -1,8 +1,9 @@
-import React from "react";
 import "./MoviesCard.css";
-import iconSaved from "../../images/heart1.svg";
-import iconDelete from "../../images/heart.svg";
-import { reformatTime } from "../../utils/reformaTime";
+import React from "react";
+
+import iconSaved from "../../images/heart.svg";
+import iconDelete from "../../images/heart1.svg";
+import { reformatTime } from "../../utils/helper";
 
 const MoviesCard = React.memo(
   ({
@@ -35,43 +36,39 @@ const MoviesCard = React.memo(
     };
 
     return (
-      <a className="movie-card" href={movie.trailerLink} target="_blank">
-        <div className="card">
-          <img className="card__img" src={preview} alt="обложка фильма" />
-          <div className="card_store">
-            <div className="card__info">
+      <li className="movies__list-item">
+        <a className="movie-card" href={movie.trailerLink} target="_blank">
+          <div className="movie-card__image-wrapper">
+            <img className="movie-card__image" src={preview} alt="Описание" />
+          </div>
+          <div className="movie-card__info">
+            <h2 className="movie-card__name">{movie.nameRU}</h2>
+            <p className="movie-card__duration">
+              {reformatTime(movie.duration)}
+            </p>
+          </div>
 
-              <h3 className="card__name">{movie.nameRU}</h3>
-              <p className="card__time">{reformatTime(movie.duration)}</p>
-
-            </div>
-             {!isSaved ? (
-            /* <button
+          {!isSaved ? (
+            <button
               className="movie-card__button movie-card__button_type_save"
               onClick={handleSaveMovie}
             >
               Сохранить
             </button>
-          ) : (*/
-            <button 
-              // className="movie-card__button movie-card__button_type_delete"
-              onClick={handleSaveMovie}
+          ) : (
+            <button
+              className="movie-card__button movie-card__button_type_delete"
+              onClick={handleDeleteMovieFromSaved}
             >
-                <img src={iconSaved} alt="Сохраненные фильмы" />
-                </button>
+              {type === "movies" ? (
+                <img src={iconSaved} alt="Галка" />
               ) : (
-                <button
-                // className="movie-card__button movie-card__button_type_delete"
-              onClick={handleDeleteMovieFromSaved}>
-                <img src={iconDelete} alt="Удаление из сохранённого" />
-                </button> 
+                <img src={iconDelete} alt="Крест" />
               )}
-            <button className='movie-card__button movie-card__button_type_save'
-            ></button>
-          </div>
-        </div>
-    {/* )} */}
-      </a>
+            </button>
+          )}
+        </a>
+      </li>
     );
   }
 );

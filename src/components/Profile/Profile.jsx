@@ -1,10 +1,10 @@
 import "./Profile.css";
 import React, { useContext, useEffect } from "react";
-import Content from "../Content/Content";
+import PageContent from "../Content/Content";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { useFormWithValidation } from "../../utils/useFormWithValidation";
+import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 
-export default function Profile({
+function Profile({
   handleLogOut,
   handleProfileUpdate,
   isActiveForUpdate,
@@ -23,8 +23,8 @@ export default function Profile({
   });
 
   const errorServerMessageClassName = `profile__error-message profile__error-message_type_server${profileErrorMessage && isActiveForUpdate
-    ? " profile__error-message_visible"
-    : ""
+      ? " profile__error-message_visible"
+      : ""
     }`;
 
   const errorMessageClassName1 = `profile__error-message${isActiveForUpdate ? " profile__error-message_visible" : ""
@@ -61,14 +61,14 @@ export default function Profile({
   }, []);
 
   return (
-    <Content name="profile">
-      <h2 className="profile__title">Привет,  {currentUser.name}!</h2>
+    <PageContent name="profile">
+      <h2 className="profile__title">Привет, {currentUser.name}!</h2>
       <form className="profile__form" onSubmit={handleSubmit}>
         <label className="profile__input-label">
           Имя
           <input
-            className="profile__input"
             name="name"
+            className="profile__input"
             type="text"
             disabled={!isActiveForUpdate}
             required={true}
@@ -83,8 +83,8 @@ export default function Profile({
         <label className="profile__input-label">
           E-mail
           <input
-            className="profile__input"
             name="email"
+            className="profile__input"
             type="email"
             required={true}
             disabled={!isActiveForUpdate}
@@ -119,6 +119,8 @@ export default function Profile({
           Выйти из аккаунта
         </button>
       )}
-    </Content>
+    </PageContent>
   );
 }
+
+export default Profile;

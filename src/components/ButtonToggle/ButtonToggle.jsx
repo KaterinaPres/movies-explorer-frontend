@@ -1,7 +1,7 @@
 import "./ButtonToggle.css";
 import React from "react";
 
-function ToggleButton({
+function ButtonToggle({
   name,
   label,
   state,
@@ -26,4 +26,4 @@ function ToggleButton({
   );
 }
 
-export default ToggleButton;
+export default ButtonToggle;

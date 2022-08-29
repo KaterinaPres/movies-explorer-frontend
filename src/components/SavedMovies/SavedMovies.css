@@ -1,11 +1,15 @@
-.card__button_delete {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  background-image: url(../../images/delete.svg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 10px 10px;
-  background-color: #fdfdfd;
-  border-radius: 30px;
+.saved-movies {
+  padding: 80px 70px;
+}
+
+@media screen and (max-width: 790px) {
+  .saved-movies {
+    padding: 80px 30px 177px;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .saved-movies {
+    padding: 50px 10px 150px;
+  }
 }
