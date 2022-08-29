@@ -50,17 +50,38 @@
 }
 
 .profile__error-message {
-  margin-top: 169px;
-  margin-bottom: 20px;
   font-size: 11px;
   line-height: 13px;
   color: #ff004c;
-  text-align: center;
+  text-align: left;
   min-height: 13px;
   opacity: 0;
+  margin-bottom: 12px;
+}
+
+.profile__error-message_type_server {
+  text-align: center;
 }
 
 .profile__error-message_visible {
+  opacity: 1;
+}
+
+.profile__success-message {
+  font-size: 11px;
+  line-height: 13px;
+  color: #2be080;
+  text-align: center;
+  min-height: 13px;
+  opacity: 0;
+  display: none;
+}
+
+.profile__success-message_visible {
+  display: block;
+  position: absolute;
+  bottom: 50px;
+  left: 27%;
   opacity: 1;
 }
 
@@ -75,6 +96,7 @@
   background-color: #3456f3;
   color: #fff;
   padding: 0;
+  margin-top: auto;
 }
 
 .profile__submit-button:disabled {
@@ -89,6 +111,8 @@
   border: none;
   background-color: transparent;
   padding: 0;
+  margin-top: auto;
+  margin-bottom: 29px;
   cursor: pointer;
 }
 
@@ -109,10 +133,6 @@
   .profile__title {
     margin: 236px 0 96px 0;
     text-align: center;
-  }
-
-  .profile__error-message {
-    margin-top: 160px;
   }
 }
 
@@ -140,10 +160,6 @@
     margin: 70px 0 80px;
   }
 
-  .profile__error-message {
-    margin-top: 328px;
-  }
-
   .profile__edit-link {
     font-size: 12px;
     line-height: 15px;
@@ -152,5 +168,13 @@
   .profile__cancel-link {
     font-size: 12px;
     line-height: 15px;
+  }
+
+  .profile__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 442px;
+    margin-bottom: 16px;
   }
 }

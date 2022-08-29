@@ -1,51 +1,103 @@
 import "./Profile.css";
-import React, { useState } from "react";
+import React, { useContext, useEffect } from "react";
 import Content from "../Content/Content";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { useFormWithValidation } from "../../utils/useFormWithValidation";
 
-function Profile() {
-  const [isActiveForEdit, setIsActiveForEdit] = useState(false);
-  const [errorMessage, ] = useState("");
+export default function Profile({
+  handleLogOut,
+  handleProfileUpdate,
+  isActiveForUpdate,
+  setIsActiveForUpdate,
+  successMessage,
+  setSuccessMessage,
+  handleEdit,
+  profileErrorMessage,
+  setProfileErrorMessage,
+}) {
+  const currentUser = useContext(CurrentUserContext);
 
-  const inputDisabled = `${!isActiveForEdit ? "disabled" : ""}`;
-  const errorMessageClassName = `profile__error-message${
-    errorMessage && isActiveForEdit ? " profile__error-message_visible" : ""
-  }`;
+  const controls = useFormWithValidation({
+    name: currentUser.name,
+    email: currentUser.email,
+  });
+
+  const errorServerMessageClassName = `profile__error-message profile__error-message_type_server${profileErrorMessage && isActiveForUpdate
+    ? " profile__error-message_visible"
+    : ""
+    }`;
+
+  const errorMessageClassName1 = `profile__error-message${isActiveForUpdate ? " profile__error-message_visible" : ""
+    }`;
+
+  const successMessageClassName = `profile__success-message ${successMessage ? "profile__success-message_visible" : ""
+    }`;
+
+  const isButtonDisabled =
+    !controls.isValid ||
+    profileErrorMessage ||
+    (controls.values.name === currentUser.name &&
+      controls.values.email === currentUser.email);
 
   const handleEditProfile = (e) => {
     e.preventDefault();
-    setIsActiveForEdit(true);
+    setSuccessMessage("");
+    handleEdit();
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsActiveForEdit(false);
+    handleProfileUpdate(controls.values);
   };
+
+  useEffect(() => {
+    setProfileErrorMessage("");
+  }, [controls.values]);
+
+  useEffect(() => {
+    setIsActiveForUpdate(false);
+    setSuccessMessage("");
+    setProfileErrorMessage("");
+  }, []);
 
   return (
     <Content name="profile">
-      <h2 className="profile__title">Привет, Виталий!</h2>
+      <h2 className="profile__title">Привет,  {currentUser.name}!</h2>
       <form className="profile__form" onSubmit={handleSubmit}>
         <label className="profile__input-label">
           Имя
           <input
             className="profile__input"
+            name="name"
             type="text"
-            disabled={inputDisabled}
+            disabled={!isActiveForUpdate}
             required={true}
-            ref={(input) => input && input.focus()}
+            minLength={2}
+            maxLength={30}
+            pattern={"[а-яА-ЯёЁa-zA-z- ]*"}
+            value={controls.values.name || ""}
+            onChange={controls.handleChange}
           />
         </label>
+        <span className={errorMessageClassName1}>{controls.errors.name}</span>
         <label className="profile__input-label">
           E-mail
           <input
             className="profile__input"
+            name="email"
             type="email"
             required={true}
-            disabled={inputDisabled}
+            disabled={!isActiveForUpdate}
+            value={controls.values.email}
+            onChange={controls.handleChange}
           />
         </label>
-        <span className={errorMessageClassName}>{errorMessage}</span>
-        {!isActiveForEdit ? (
+        <span className={errorMessageClassName1}>{controls.errors.email}</span>
+        <span className={successMessageClassName}>{successMessage}</span>
+        <span className={errorServerMessageClassName}>
+          {profileErrorMessage}
+        </span>
+        {!isActiveForUpdate ? (
           <button
             className="link profile__edit-link"
             onClick={handleEditProfile}
@@ -56,17 +108,17 @@ function Profile() {
           <button
             className="button profile__submit-button"
             type="submit"
-            disabled={errorMessage ? `true` : ""}
+            disabled={isButtonDisabled}
           >
             Сохранить
           </button>
         )}
       </form>
-      {!isActiveForEdit && (
-        <button className="link profile__cancel-link">Выйти из аккаунта</button>
+      {!isActiveForUpdate && (
+        <button className="link profile__cancel-link" onClick={handleLogOut}>
+          Выйти из аккаунта
+        </button>
       )}
     </Content>
   );
 }
-
-export default Profile;

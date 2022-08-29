@@ -1,7 +1,7 @@
 import "./InputError.css";
 import React from "react";
 
-export default function InputError({ name, label, type, autoFocus, required, value, onChange }) {
+export default function InputError({ name, label, type, autoFocus, required, value, onChange, pattern, minLength }) {
     const errorClassName = `input__error ${name}-input-error`;
 
     return (
@@ -14,7 +14,9 @@ export default function InputError({ name, label, type, autoFocus, required, val
                     type={type}
                     autoFocus={autoFocus}
                     required={required}
-                    value={value}
+                    value={value || ""}
+                    pattern={pattern}
+                    minLength={minLength}
                     onChange={onChange}
                 />
             </label>

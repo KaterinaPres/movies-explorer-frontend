@@ -1,67 +1,78 @@
-import "./Register.css";
 import React from "react";
+import FromBlock from "../FormBlock/FormBlock";
+import "./Register.css";
+import { useFormWithValidation } from "../../hooks/form";
 
-import PageWithForm from "../PageWithForm/PageWithForm";
-import FormBlock from "../FormBlock/FormBlock";
-import InputError from "../InputError/InputError";
-import SubmitButton from "../SubmitButton/SubmitButton";
-import { useState } from "react";
+export default function Register(props) {
+  const { values, handleChange, errors, isValid } = useFormWithValidation();
+  console.log(isValid);
 
-export default function Register() {
-  const [inputValues, setInputValues] = useState({
-    name: "", email: "", password: ""
-  });
-
-  const handleInputValuesChange = (e) => {
-    const { name, value } = e.target;
-    setInputValues((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleFormSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    let { name, email, password } = values;
+    props.handleRegister({ name, email, password });
   };
-
-  console.log(inputValues);
 
   return (
-    <PageWithForm
-      name="register"
-      title="Добро пожаловать!"
-      captionText="Уже зарегистрированы?"
-      linkText="Войти"
-      linkPath="/signin"
-    >
-      <FormBlock onSubmit={handleFormSubmit}>
-        <InputError
-          name="name"
-          type="text"
-          label="Имя"
-          autoFocus={true}
-          required={true}
-          value={inputValues.name}
-          onChange={handleInputValuesChange}
-        ></InputError>
-        <InputError
-          name="email"
-          type="email"
-          label="E-mail"
-          required={true}
-          value={inputValues.email}
-          onChange={handleInputValuesChange}
-        ></InputError>
-        <InputError
-          name="password"
-          type="password"
-          label="Пароль"
-          required={true}
-          value={inputValues.password}
-          onChange={handleInputValuesChange}
-        ></InputError>
-        <SubmitButton label="Зарегистрироваться" />
-      </FormBlock>
-    </PageWithForm>
+    <section className="register">
+      <FromBlock
+        title="Добро пожаловать!"
+        formName="register"
+        buttonText="Зарегистрироваться"
+        subtitle="Уже зарегистрированы?"
+        toLink="/signin"
+        namelink="Войти"
+        handleSubmit={handleSubmit}
+        isOpen={props.isOpen}
+        message={props.message}
+        // disabled={isValid ? "disabled" : 'null'}
+      >
+        <label className="register__label">
+          Имя
+          <input
+            className="register__item"
+            name="name"
+            type="text"
+            id="name"
+            required
+            minLength="2"
+            maxLength="40"
+            value={values.name || ""}
+            onChange={handleChange}
+          />
+          <span className="register__message">{errors.name}</span>
+        </label>
+        <label className="register__label">
+          E-mail
+          <input
+            className="register__item"
+            name="email"
+            type="text"
+            id="email"
+            required
+            minLength="2"
+            maxLength="40"
+            value={values.email || ""}
+            onChange={handleChange}
+          />
+          <span className="register__message">{errors.email}</span>
+        </label>
+        <label className="register__label">
+          Пароль
+          <input
+            className="register__item "
+            name="password"
+            type="password"
+            id="password"
+            required
+            minLength="2"
+            maxLength="200"
+            value={values.password || ""}
+            onChange={handleChange}
+          />
+          <span className="register__message">{errors.password}</span>
+        </label>
+      </FromBlock>
+    </section>
   );
 }

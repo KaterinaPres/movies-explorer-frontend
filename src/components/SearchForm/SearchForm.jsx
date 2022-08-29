@@ -1,95 +1,125 @@
-// import "./SearchForm.css";
-// import React, { useState } from "react";
+// import React from "react";
+// import FilterCheckbox from "../FilterCheckbox/FilterCheckbox"
 // import PageSection from "../PageSection/PageSection";
+// import "./SearchForm.css";
 
-// import iconFind from "../../images/find.svg";
-// import ToggleButton from "../Switcht/Switcht";
-
-// export default function SearchForm() {
-//   const [inputValue, setInputValue] = useState({
-//     search: "",
-//     shortFilms: false,
+// export default function SearchForm({
+//   onSearch,
+//   initialSearchQueryValues,
+//   searchWordRequiered,
+// }) {
+//   const controls = useFormWithValidation({
+//     nameRU:
+//       initialSearchQueryValues !== undefined
+//         ? initialSearchQueryValues.nameRU
+//         : "",
+//     shortFilms:
+//       initialSearchQueryValues !== undefined
+//         ? initialSearchQueryValues.shortFilms
+//         : "",
 //   });
 
-//   const handleInputValueChange = (e) => {
-//     const { name, value, checked } = e.target;
-//     setInputValue((prev) => ({
-//       ...prev,
-//       [name]: e.target.type === "checkbox" ? checked : value,
-//     }));
-//   };
+//   useEffect(
+//     (e) => {
+//       if (controls.errors.nameRU) {
+//         controls.updateErrorMessage(e, "nameRU", "Нужно ввести ключевое слово");
+//       }
+//     },
+//     [controls.errors.nameRU]
+//   );
 
-//   const handleFormSubmit = (e) => {
+//   const handleSearch = (e) => {
 //     e.preventDefault();
-//     localStorage.setItem("searchValue", inputValue.search);
-//     localStorage.setItem("shortFilms", inputValue.shortFilms);
+//     if (
+//       searchWordRequiered &&
+//       !controls.isValid &&
+//       controls.values.nameRU.length === 0
+//     ) {
+//       controls.checkValidity(e);
+//       controls.updateErrorMessage(e, "nameRU", "Нужно ввести ключевое слово");
+//       return;
+//     }
+//     onSearch(controls.values);
 //   };
-
 //   return (
-//     <PageSection name="search-form">
-//       <div className="search-board__divider">
-//         <div className="search-board">
-//           <img
-//             className="search-board__icon"
-//             src={iconFind}
-//             alt="Иконка лупы"
-//           />
-//           <form
-//             className="search-board__form"
-//             action=""
-//             onSubmit={handleFormSubmit}
-//           >
+//     <PageSection >
+//       <div className="search-form">
+//         <form method="get" name="search" className="search-form__form">
+//           <label className="search-form__label">
 //             <input
-//               className="search-board__input"
-//               name="search"
+//               name="movies"
 //               type="text"
+//               id="movies"
 //               placeholder="Фильм"
-//               value={inputValue.search}
-//               onChange={handleInputValueChange}
 //               required
-//             />
-//             <button className="button search-board__button" type="submit" />
-//           </form>
-
-//           <ToggleButton
-//             name="shortFilms"
-//             label="Короткометражки"
-//             state={inputValue.shortFilms}
-//             handleValueChange={handleInputValueChange}
-//           />
+//               minLength="2"
+//               maxLength="200"
+//               className="search-form__input"
+//             ></input>
+//           </label>
+//           <button type="submit" className="search-form__button"></button>
+//         </form>
+//         <div className="search-form__filter">
+//           <FilterCheckbox />
 //         </div>
-//       </div>
+//       </div >
 //     </PageSection>
 //   );
 // }
 import React from "react";
-import FilterCheckbox from "../FilterCheckbox/FilterCheckbox"
-import PageSection from "../PageSection/PageSection";
+import { useState } from "react";
+import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
+
 import "./SearchForm.css";
 
-export default function SearchForm() {
+export default function SearchForm(props) {
+  console.log('props', props)
+  const [keyValue, setKeyValue] = useState("");
+
+  function handleChangeName(e) {
+    setKeyValue(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    // Запрещаем браузеру переходить по адресу формы
+    e.preventDefault();
+
+    if (props.filtetrue === 'true') {
+      props.filterSavedMoviesClick(keyValue)
+    } else {
+      // Передаём значения управляемых компонентов во внешний обработчик
+      props.onGetMovies(keyValue);
+    }
+  }
+
   return (
-    <PageSection >
-      <div className="search-form">
-        <form method="get" name="search" className="search-form__form">
-          <label className="search-form__label">
-            <input
-              name="movies"
-              type="text"
-              id="movies"
-              placeholder="Фильм"
-              required
-              minLength="2"
-              maxLength="200"
-              className="search-form__input"
-            ></input>
-          </label>
-          <button type="submit" className="search-form__button"></button>
-        </form>
-        <div className="search-form__filter">
-          <FilterCheckbox />
-        </div>
-      </div >
-    </PageSection>
+    <div className="search-form">
+      <form method="get" name="search" className="search-form__form">
+        <label className="search-form__label">
+          <input
+            name="movies"
+            type="text"
+            id="movies"
+            placeholder="Фильм"
+            required
+            minLength="2"
+            maxLength="200"
+            className="search-form__input"
+            value={keyValue}
+            onChange={handleChangeName}
+          ></input>
+        </label>
+        <button
+          onClick={handleSubmit}
+          type="submit"
+          className="search-form__button"
+        >
+          Поиск
+        </button>
+      </form>
+      <div className="search-form__filter">
+        <FilterCheckbox />
+      </div>
+    </div>
   );
 }
