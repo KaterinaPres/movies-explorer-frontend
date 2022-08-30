@@ -53,7 +53,7 @@ function Portfolio() {
       <ul className="portfolio-links">
         <li className="portfolio-link-item">
           <a
-            href="http://localhost:3000/*"
+            href="https://KaterinaPres.github.io/how-to-learn/"
             className="link portfolio-link"
             target="_blank"
             rel="noreferrer"
@@ -75,7 +75,7 @@ function Portfolio() {
         </li>
         <li className="portfolio-link-item">
           <a
-            href="http://localhost:3000/*"
+            href="https://KaterinaPr.students.nomoredomains.xyz"
             className="link portfolio-link"
             target="_blank"
             rel="noreferrer"

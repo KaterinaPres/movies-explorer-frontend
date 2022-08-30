@@ -106,11 +106,11 @@
 
 .movie-card__button:after {
   content: "";
-  position: absolute;
+  /* position: absolute;
   top: -5px;
   bottom: -5px;
   left: -5px;
-  right: -5px;
+  right: -5px; */
 }
 
 .movie-card__button:hover {
