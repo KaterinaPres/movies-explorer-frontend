@@ -1,0 +1,26 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 400;
+  color: #000000;
+  min-height: 100vh;
+}
+
+.page__main {
+  flex-grow: 1;
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+
+.link:hover {
+  opacity: 0.7;
+}
+
+.button:disabled {
+  background-color: #f8f8f8;
+  color: #c2c2c2;
+  pointer-events: none;
+}

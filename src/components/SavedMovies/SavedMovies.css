@@ -1,0 +1,11 @@
+.card__button_delete {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background-image: url(../../images/delete.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 10px 10px;
+  background-color: #fdfdfd;
+  border-radius: 30px;
+}
