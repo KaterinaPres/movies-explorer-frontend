@@ -50,11 +50,11 @@ function SearchForm({
     <PageSection name="search-form">
       <div className="search-panel__wrapper-for-divider">
         <div className="search-panel">
-          <img
+          {/* <img
             className="search-panel__icon"
             src={iconSearchInput}
             alt="Иконка лупы"
-          />
+          /> */}
           <form
             className="search-panel__form"
             action=""
@@ -71,17 +71,17 @@ function SearchForm({
                 onChange={controls.handleChange}
                 required={searchWordRequiered}
               />
-              <button className="button search-panel__button" type="submit" />
+              <button className="button search-panel__button" type="submit"/>
             </div>
-            <ToggleButton
+          </form>
+        </div>
+        <ToggleButton
               name="shortFilms"
               label="Короткометражки"
               state={controls.values.shortFilms}
               handleValueChange={controls.handleChange}
               handleShortFilmsSearch={handleSearch}
             />
-          </form>
-        </div>
         <ErrorMessage errorMessage={controls.errors.nameRU} />
       </div>
     </PageSection>

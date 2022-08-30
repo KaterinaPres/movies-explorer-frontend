@@ -41,32 +41,33 @@ const MoviesCard = React.memo(
           <div className="movie-card__image-wrapper">
             <img className="movie-card__image" src={preview} alt="Описание" />
           </div>
-          <div className="movie-card__info">
-            <h2 className="movie-card__name">{movie.nameRU}</h2>
-            <p className="movie-card__duration">
-              {reformatTime(movie.duration)}
-            </p>
-          </div>
+          <div className="card_store">
+            <div className="movie-card__info">
+              <h2 className="movie-card__name">{movie.nameRU}</h2>
+              <p className="movie-card__duration">
+                {reformatTime(movie.duration)}
+              </p>
+            </div>
 
-          {!isSaved ? (
-            <button
-              className="movie-card__button movie-card__button_type_save"
-              onClick={handleSaveMovie}
-            >
-              Сохранить
-            </button>
-          ) : (
-            <button
-              className="movie-card__button movie-card__button_type_delete"
-              onClick={handleDeleteMovieFromSaved}
-            >
-              {type === "movies" ? (
-                <img src={iconSaved} alt="Галка" />
-              ) : (
-                <img src={iconDelete} alt="Крест" />
-              )}
-            </button>
-          )}
+            {!isSaved ? (
+              <button
+                className="movie-card__button movie-card__button_type_save"
+                onClick={handleSaveMovie}
+              ><img src={iconDelete} alt="Галка" />
+              </button>
+            ) : (
+              <button
+                className="movie-card__button movie-card__button_type_delete"
+                onClick={handleDeleteMovieFromSaved}
+              >
+                {type === "movies" ? (
+                  <img src={iconSaved} alt="Галка" />
+                ) : (
+                  <img src={iconDelete} alt="Крест" />
+                )}
+              </button>
+            )}
+          </div>
         </a>
       </li>
     );

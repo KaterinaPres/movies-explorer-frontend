@@ -53,7 +53,7 @@ function Portfolio() {
       <ul className="portfolio-links">
         <li className="portfolio-link-item">
           <a
-            href="https://agilyova.github.io/how-to-learn"
+            href="http://localhost:3000/*"
             className="link portfolio-link"
             target="_blank"
             rel="noreferrer"
@@ -64,7 +64,7 @@ function Portfolio() {
         </li>
         <li className="portfolio-link-item">
           <a
-            href="https://agilyova.github.io/russian-travel/"
+            href="https://KaterinaPres.github.io/russian-travel/"
             className="link portfolio-link"
             target="_blank"
             rel="noreferrer"
@@ -75,7 +75,7 @@ function Portfolio() {
         </li>
         <li className="portfolio-link-item">
           <a
-            href="https://mesto.gilyova.nomorepartiesxyz.ru/"
+            href="http://localhost:3000/*"
             className="link portfolio-link"
             target="_blank"
             rel="noreferrer"
