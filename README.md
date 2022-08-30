@@ -12,7 +12,9 @@
 директория images/ с картинками, / 3.38 директория components/ с JS и CSS-файлами компонентов, / 3.38 директория fonts/ со шрифтами. / 3.38
 
 Cсылка на сайт, размещенный на Яндекс.Облаке:
-# домен
+# https://filmskaterinapres.nomoredomains.sbs/
 
-Getting Started with Create React App
-This project was bootstrapped with Create React App.
+публичный IP-адрес сервера: 51.250.51.158
+
+Ссылка на пул-реквест
+# https://github.com/KaterinaPres/movies-explorer-frontend/pull/2

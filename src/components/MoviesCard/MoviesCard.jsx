@@ -1,21 +1,77 @@
+import "./MoviesCard.css";
 import React from "react";
-import "./MoviesCard.css"
-import movies from "../../images/movies.png"
-export default function MoviesCard(props) {
-  return (
-    <div className="card">
-      <img className="card__img" src={movies} alt="обложка фильма" />
-      {props.children}
-      <div className="card_store">
-        <div className="card__info">
 
-          <h3 className="card__name">В погоне за Бенкси</h3>
-          <p className="card__time">27 минут</p>
+import iconSaved from "../../images/heart.svg";
+import iconDelete from "../../images/heart1.svg";
+import { reformatTime } from "../../utils/helper";
 
-        </div>
-        <button className='movie-card__button movie-card__button_type_save'
-        ></button>
-      </div>
-    </div>
-  );
-}
+const MoviesCard = React.memo(
+  ({
+    savedMovies,
+    type,
+    movie,
+    addMoviesToSaved,
+    deleteMovieFromSaved,
+    preview,
+  }) => {
+    const isSaved =
+      type === "movies"
+        ? savedMovies.some((savedMovie) => {
+          return savedMovie.movieId === movie.id
+            ? (movie._id = savedMovie._id)
+            : "";
+        })
+        : true;
+
+    const handleSaveMovie = (evt) => {
+      evt.preventDefault();
+      evt.stopPropagation();
+      addMoviesToSaved(movie);
+    };
+
+    const handleDeleteMovieFromSaved = (evt) => {
+      evt.preventDefault();
+      evt.stopPropagation();
+      deleteMovieFromSaved(movie._id);
+    };
+
+    return (
+      <li className="movies__list-item">
+        <a className="movie-card" href={movie.trailerLink} target="_blank">
+          <div className="movie-card__image-wrapper">
+            <img className="movie-card__image" src={preview} alt="Описание" />
+          </div>
+          <div className="card_store">
+            <div className="movie-card__info">
+              <h2 className="movie-card__name">{movie.nameRU}</h2>
+              <p className="movie-card__duration">
+                {reformatTime(movie.duration)}
+              </p>
+            </div>
+
+            {!isSaved ? (
+              <button
+                className="movie-card__button movie-card__button_type_save"
+                onClick={handleSaveMovie}
+              ><img src={iconDelete} alt="Галка" />
+              </button>
+            ) : (
+              <button
+                className="movie-card__button movie-card__button_type_delete"
+                onClick={handleDeleteMovieFromSaved}
+              >
+                {type === "movies" ? (
+                  <img src={iconSaved} alt="Галка" />
+                ) : (
+                  <img src={iconDelete} alt="Крест" />
+                )}
+              </button>
+            )}
+          </div>
+        </a>
+      </li>
+    );
+  }
+);
+
+export default MoviesCard;

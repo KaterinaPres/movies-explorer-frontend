@@ -9,7 +9,7 @@ export default function FilterCheckbox() {
                 type="checkbox"
                 class="custom-checkbox"
                 id="happy"
-                name="happy"
+                name="shortFilms"
                 value="yes"
             ></input>
             <label for="happy"></label>

@@ -1,11 +1,15 @@
-import React from "react";
 import "./MoviesCardList.css";
+import React from "react";
+import PageSection from "../PageSection/PageSection";
+import LoadMoreButton from "../LoadMoreButton/LoadMoreButton";
 
-export default function MoviesCardList(props) {
-  
+function MoviesCardList(props) {
   return (
-    <section className="movies-conteiner">
-			{props.children}
-    </section>
+    <PageSection name={props.name}>
+      <ul className="movies__list">{props.children}</ul>
+      {props.pagination && <LoadMoreButton onLoadMore={props.onLoadMore} />}
+    </PageSection>
   );
 }
+
+export default MoviesCardList;

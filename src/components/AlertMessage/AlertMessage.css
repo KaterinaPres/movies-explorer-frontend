@@ -1,0 +1,31 @@
+.alert {
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 30px;
+    left: 50px;
+    width: 250px;
+    min-height: 100px;
+    border-radius: 8px;
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 25px;
+    text-align: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s linear, opacity 0.3s linear;
+  }
+  
+  .alert_visible {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .alert__close-button {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    fill: #721c24;
+  }

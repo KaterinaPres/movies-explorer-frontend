@@ -1,26 +1,36 @@
-import React from "react";
-import { Link, Route, Switch, useLocation } from "react-router-dom";
 import "./Header.css";
 import logo from "../../images/logo.svg";
-import PageLanding from "../PageLanding/PageLanding";
+
+import React from "react";
+import PageContent from "../Content/Content";
+import { Link, Route, Switch, useLocation } from "react-router-dom";
+
 import Navigation from "../Navigation/Navigation";
 
-export default function Header() {
+function Header({ loggedIn }) {
   const location = useLocation();
-  const headerName = `header${location.pathname === "/" ? " header__theme_dark" : ""
+
+  const headerCLassName = `header${location.pathname === "/" ? " header_theme_dark" : ""
     }`;
+
+  if (loggedIn === null) {
+    return null;
+  }
+
   return (
     <Switch>
       <Route exact path={["/movies", "/saved-movies", "/profile", "/"]}>
-        <header className={headerName}>
-          <PageLanding name="header__content">
+        <header className={headerCLassName}>
+          <PageContent name="header__content">
             <Link to="/" className="header__logo-link">
-              <img src={logo} alt="Логотип" className="header__logo" />
+              <img src={logo} alt="Логотоип" className="header__logo" />
             </Link>
-            <Navigation />
-          </PageLanding>
+            <Navigation loggedIn={loggedIn} />
+          </PageContent>
         </header>
       </Route>
     </Switch>
   );
 }
+
+export default Header;

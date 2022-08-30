@@ -1,0 +1,33 @@
+.header__link_auth:focus {
+	font-weight: 500;
+}
+
+.header-auth__menu {
+	display: none;
+}
+
+.header-auth__menu:hover {
+	cursor: pointer;
+	opacity: 0.7;
+}
+
+.header__buttonAuth {
+	padding: 0;
+	border-style: none;
+    background-color: transparent;
+	width: 40px;
+	height: 43px;
+}
+
+
+@media screen and (max-width: 800px) {
+	.header__info_menu-auth {
+		display: none;
+	}
+
+	.header-auth__menu {
+		display: block;
+	}
+	
+	
+}
